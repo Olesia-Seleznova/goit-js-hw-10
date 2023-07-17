@@ -1,6 +1,7 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
+import Notiflix from 'notiflix';
 
 const refs = {
   breedSelectEl: document.querySelector('.breed-select'),
@@ -19,7 +20,7 @@ function getBreedColection(evt) {
 
   fetchBreeds()
     .then(data => randerBreedslist(data))
-    .catch(err => console.log(err.textContent));
+    .catch(err => Notiflix.Notify.failure(`${refs.errorEl.textContent}`));
 }
 
 function randerBreedslist(data) {
@@ -38,9 +39,9 @@ refs.catInfoEl.addEventListener('change', createCatCard);
 
 function createCatCard(evt) {
   refs.loaderEl.hidden = false;
-  fetchCatByBreed(evt.currenttarget.value)
+  fetchCatByBreed(evt.currentTarget.value)
     .then(data => catCardRender(data))
-    .catch(err => console.log(err.textContent));
+    .catch(err => Notiflix.Notify.failure(`${refs.errorEl.textContent}`));
 }
 
 function catCardRender(data) {
