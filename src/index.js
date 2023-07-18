@@ -10,6 +10,8 @@ const refs = {
   errorEl: document.querySelector('.error'),
 };
 
+refs.loaderEl.hidden = true;
+
 fetchBreeds()
   .then(data => randerBreedslist(data))
   .catch(err => {
@@ -49,10 +51,10 @@ function createCatCard(evt) {
 function catCardRender(data) {
   refs.loaderEl.hidden = true;
   let catInform = data[0];
-  refs.catInfoEl.innerHTML = `<img class="cat-img" src="${catInform.url}" alt="${catInform.data[0].name}" width=400px>
+  refs.catInfoEl.innerHTML = `<img class="cat-img" src="${catInform.url}" alt="${catInform.breeds[0].name}" width="500" >
         <div class="cat-info-card">
-          <h1 class="cat-title">${catInform.data[0].name}</h1>
-          <p class="cat-description">${catInform.data[0].description}</p>
-          <p class="cat-temperament"><span class cat-temperament-description>Temperament: ${catInform.data[0].temperament}</span></p>
+          <h1 class="cat-title">${catInform.breeds[0].name}</h1>
+          <p class="cat-description">${catInform.breeds[0].description}</p>
+          <p class="cat-temperament"><span class cat-temperament-description>Temperament: ${catInform.breeds[0].temperament}</span></p>
           </div>`;
 }
