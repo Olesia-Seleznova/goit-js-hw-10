@@ -19,7 +19,7 @@ export function fetchBreeds() {
 
 export function fetchCatByBreed(breedId) {
   return fetch(
-    `${BASE_URL}images/search?breed_ids=${breedId}&api_key=${API_KEY}`
+    `${BASE_URL}/images/search?breed_ids=${breedId}&api_key=${API_KEY}`
   ).then(resp => {
     if (!resp.ok) {
       throw new Error(resp.statusText);
